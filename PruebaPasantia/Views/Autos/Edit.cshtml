@@ -1,0 +1,86 @@
+﻿@model PruebaPasantia.Models.Auto
+
+@{
+    ViewData["Title"] = "Editar Auto";
+}
+
+<h1>Editar</h1>
+
+<h4>Auto</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Patente" class="control-label"></label>
+                <input asp-for="Patente" class="form-control" />
+                <span asp-validation-for="Patente" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Marca" class="control-label"></label>
+                <input asp-for="Marca" class="form-control" />
+                <span asp-validation-for="Marca" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Modelo" class="control-label"></label>
+                <input asp-for="Modelo" class="form-control" />
+                <span asp-validation-for="Modelo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Año" class="control-label"></label>
+                <input asp-for="Año" class="form-control" />
+                <span asp-validation-for="Año" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Kms" class="control-label"></label>
+                <input asp-for="Kms" class="form-control" />
+                <span asp-validation-for="Kms" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Foto1" class="control-label"></label><br />
+                @if (Model.Foto1 != "")
+                {
+                    <img width="96" src="@Model.Foto1" /> }
+                else
+                {
+                    <p>Sin Foto</p>}
+
+                <input type="file" name="Foto1File" class="form-control" />
+                <span asp-validation-for="Foto1File" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Foto2" class="control-label"></label><br />
+                @if (Model.Foto2 != "")
+                {
+                    <img width="96" src="@Model.Foto2" /> }
+                else
+                {
+                    <p>Sin Foto</p>}
+
+                <input type="file" name="Foto2File" class="form-control" />
+                <span asp-validation-for="Foto2File" class="text-danger"></span>
+            </div>
+            <div class="g-recaptcha" data-callback="recaptcha_callback" data-sitekey="6Ld8PD0aAAAAAL15VFy02PZsHOjVZHhf3180-yKw"></div>
+            <div class="form-group">
+                <input type="submit" id="submit" value="Guardar" class="btn btn-primary" disabled />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Volver a la lista</a>
+</div>
+
+@section Scripts {
+
+    <script type="text/javascript">
+    function recaptcha_callback(){
+
+      $('#submit').prop("disabled", false);
+    }
+    </script>    
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

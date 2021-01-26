@@ -1,0 +1,71 @@
+﻿@model IEnumerable<PruebaPasantia.Models.Auto>
+
+@{
+    ViewData["Title"] = "Lista de Autos";
+}
+
+<h1>Listado de Autos</h1>
+
+<p>
+    <a asp-action="Create">Agregar nuevo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Patente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Marca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Modelo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Año)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Kms)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Foto1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Foto2)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Patente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Modelo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Año)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kms)
+            </td>
+            <td>
+                <img width="96" src="@item.Foto1" />
+            </td>
+            <td>
+                <img width="96" src="@item.Foto2" />
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.IdAuto }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.IdAuto }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.IdAuto })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
